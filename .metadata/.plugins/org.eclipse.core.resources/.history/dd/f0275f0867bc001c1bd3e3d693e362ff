@@ -1,0 +1,67 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+public class StudentDatabase {
+
+	public static void main(String[] args) {
+		Scanner scnr = new Scanner(System.in);
+		String[] studentNames = {"Arthur Dent", "Paul Atreides", "Ford Prefect", "Tom Bombadil", "Clara Balmer", "Gandalf the Grey", "Severus Snape", "Steven Universe", "Luke Skywalker", "Aang the Avatar"};
+		String[] studentFoods = {"Fish and Chips", "Spice", "Pan Galactic Gargleblaster", "Goldberry's cooking", "Butter", "Sauron's tears", "Pumpkin Pasties", "Cookie cat, or chaaaaaps, or the bits", "Yoda", "Appa"};
+		String[] studentAnimals = {"Earthlings", "Muad'dib", "Arthur Dent", "Fatty Lumpkin", "Polar Bears", "Hobbits", "a doe", "Lion", "Blue Milk", "Egg Custard Tarts"};
+		
+		System.out.println("Welcome to our java class. These are the students:");
+		printNames(studentNames);
+		System.out.print("Which student would you like to learn more about? (enter a number 1-10): ");
+		boolean studentChoiceRepeat = true;
+		boolean infoChoiceRepeat = true;
+		
+		while (studentChoiceRepeat) {
+			try {
+				int studentIDChoice = scnr.nextInt();
+				
+				
+				printInfoOptions(studentIDChoice, studentNames);
+				String infoChoice = scnr.next();
+				if (infoChoice.equalsIgnoreCase("food")) {
+					
+				} else if (infoChoice.equalsIgnoreCase("animal")) {
+					
+				} else {
+					System.out.println("That data does not exist. (enter \"food\" or \"animal\"): ");
+					scnr.next();
+				}
+				
+				
+			} catch (InputMismatchException e) {
+				scnr.next();
+				System.out.print("\nThat isn't a number. Please try again. (enter a number 1-10): ");
+			} catch (IndexOutOfBoundsException e) {
+				System.out.print("\nThat student does not exist. Please try again. (enter a number 1-10): ");
+			}
+		}
+		
+		
+		
+			
+		
+		
+		scnr.close();
+	}
+	
+	public static void printNames(String arr[]) {
+		for (int i = 0; i < arr.length; i++) {
+			System.out.print((i + 1) + ". ");
+			System.out.print(arr[i] + "\n");
+			
+		}
+	}
+	public static void printInfoOptions(int n, String names[]) {
+		System.out.print("\nStudent " + n + " is " + names[n - 1] + ". What would you like to know about " + names[n-1] + "? (enter \"food\" or \"animal\"): ");
+	}
+	public static void printFoodFave(int n, String names[], String foods[]) {
+		System.out.print(names[n-1] + " loves to eat " + foods[n-1] + ". Would you like to know more? y/n ");
+	}
+	public static void printAnimalFave(int n, String names[], String animals[]) {
+		System.out.print(names[n-1] + " really likes " + animals[n-1] + ". Would you like to know more? y/n ");
+	}
+
+}
